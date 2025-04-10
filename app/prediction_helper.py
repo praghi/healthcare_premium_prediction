@@ -1,12 +1,19 @@
 # codebasics ML course: codebasics.io, all rights reserverd
 
 import pandas as pd
-import joblib
+import joblib 
+import os
 
-model_young = joblib.load("artifacts/model_young.joblib")
-model_rest = joblib.load("artifacts/model_rest.joblib")
-scaler_young = joblib.load("artifacts/scaler_young.joblib")
-scaler_rest = joblib.load("artifacts/scaler_rest.joblib")
+# Base path relative to this file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ARTIFACTS_DIR = os.path.join(BASE_DIR,"artifacts")
+
+
+# Load models using absolute paths
+model_young = joblib.load(os.path.join(ARTIFACTS_DIR, "model_young.joblib"))
+model_rest = joblib.load(os.path.join(ARTIFACTS_DIR, "model_rest.joblib"))
+scaler_young = joblib.load(os.path.join(ARTIFACTS_DIR, "scaler_young.joblib"))
+scaler_rest = joblib.load(os.path.join(ARTIFACTS_DIR, "scaler_rest.joblib"))
 
 def calculate_normalized_risk(medical_history):
     risk_scores = {
